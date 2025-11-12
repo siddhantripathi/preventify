@@ -1,0 +1,9 @@
+# Core dependencies
+deepgram-sdk>=3.0.0
+
+# Optional: for n8n webhook integration
+requests>=2.31.0
+
+# Optional: for environment variable management
+python-dotenv>=1.0.0
+
