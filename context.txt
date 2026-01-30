@@ -1,0 +1,19 @@
+Project: Preventify - clinical live-assist tool for doctors/nurses.
+
+Current state:
+- Initialized planning artifacts only; no code created yet.
+- Core workflow: live consult audio -> transcript -> local LLM suggestions/questions -> final summary/diagnosis.
+- Platforms: React Native for iOS/Android, React for desktop.
+- Backend: undecided (Node.js or Python).
+- n8n: intended for automation workflows but not designed yet.
+
+Key constraints:
+- Secrets must live in root `.env` file; never hardcode secrets.
+
+Open decisions:
+- Backend language/framework.
+- STT provider (local vs cloud).
+- LLM runtime (local model, hardware targets).
+- Real-time transport (WebSocket vs SSE).
+- Database and storage stack.
+

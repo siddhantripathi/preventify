@@ -1,0 +1,164 @@
+Preventify Development Plan (Technical, Atomic)
+
+1) Repository and Workspace Setup
+1.1 Create monorepo root with separate apps and packages.
+1.2 Add root `.gitignore`.
+1.3 Add root `.editorconfig`.
+1.4 Add root `.env` placeholder and `.env.example`.
+1.5 Define environment variable naming conventions.
+1.6 Create `apps/mobile` for React Native.
+1.7 Create `apps/desktop` for React.
+1.8 Create `apps/backend` for API.
+1.9 Create `packages/shared` for types and utilities.
+1.10 Add root README with run scripts.
+
+2) Tooling and Quality Gates
+2.1 Add TypeScript configuration for all apps.
+2.2 Add ESLint configuration and shared rules.
+2.3 Add Prettier configuration.
+2.4 Add lint scripts in each app.
+2.5 Add test runner selection (Jest/Vitest).
+2.6 Add commit hooks (lint-staged, husky).
+2.7 Add CI pipeline for lint/test/build.
+
+3) Backend Scaffolding
+3.1 Choose backend runtime (Node.js or Python).
+3.2 Scaffold API server project.
+3.3 Configure environment loader to read root `.env`.
+3.4 Add config module for environment validation.
+3.5 Set up request logging middleware.
+3.6 Set up error handling middleware.
+3.7 Add health check endpoint.
+
+4) Database and Migrations
+4.1 Choose database (PostgreSQL).
+4.2 Choose ORM or query builder.
+4.3 Set up migration tooling.
+4.4 Create initial migration table.
+4.5 Define DB connection pool.
+4.6 Add DB health check.
+
+5) Auth and RBAC
+5.1 Define roles: doctor, nurse, admin.
+5.2 Implement user model and migration.
+5.3 Implement password hashing or SSO placeholder.
+5.4 Implement login endpoint.
+5.5 Implement JWT issuance and refresh.
+5.6 Implement auth middleware.
+5.7 Implement RBAC guard utilities.
+
+6) Core Data Models
+6.1 Implement patient model and migration.
+6.2 Implement encounter model and migration.
+6.3 Implement transcript model and migration.
+6.4 Implement suggestion model and migration.
+6.5 Implement diagnosis model and migration.
+6.6 Implement consent model and migration.
+6.7 Implement audit_log model and migration.
+6.8 Add DB indexes for key queries.
+
+7) API Endpoints
+7.1 Implement CRUD for patients.
+7.2 Implement CRUD for encounters.
+7.3 Implement create transcript entry endpoint.
+7.4 Implement list transcript entries endpoint.
+7.5 Implement create suggestion endpoint.
+7.6 Implement list suggestions endpoint.
+7.7 Implement create final report endpoint.
+7.8 Implement list audit logs endpoint.
+7.9 Add request validation for each route.
+7.10 Add OpenAPI spec generation.
+
+8) Real-Time Transport
+8.1 Choose WebSocket or SSE for live updates.
+8.2 Implement real-time server module.
+8.3 Implement auth handshake for real-time connections.
+8.4 Implement transcript partial update channel.
+8.5 Implement suggestion update channel.
+8.6 Add reconnect and backoff logic.
+
+9) Audio Capture and Streaming
+9.1 Select React Native audio capture library.
+9.2 Select React desktop audio capture library.
+9.3 Implement audio permission request flow.
+9.4 Implement start/stop recording controls.
+9.5 Implement audio chunking and buffering.
+9.6 Implement upload/stream to backend.
+
+10) Speech-to-Text Integration
+10.1 Choose STT engine (local or cloud).
+10.2 Implement STT adapter interface.
+10.3 Implement streaming STT ingestion on backend.
+10.4 Implement partial transcript persistence.
+10.5 Implement final transcript persistence.
+10.6 Implement diarization support (doctor/patient).
+
+11) LLM Suggestions (Local)
+11.1 Define rolling transcript windowing strategy.
+11.2 Implement prompt templates for suggestions.
+11.3 Implement prompt templates for questions.
+11.4 Implement prompt templates for final summary.
+11.5 Implement LLM adapter interface.
+11.6 Implement LLM request pipeline.
+11.7 Implement rate limiting and caching.
+11.8 Store suggestion outputs to DB.
+
+12) n8n Integration
+12.1 Deploy n8n locally or containerized.
+12.2 Define webhook endpoints for triggers.
+12.3 Implement server-side webhook calls.
+12.4 Create workflow for post-visit follow-up.
+12.5 Create workflow for report export.
+12.6 Log workflow execution results.
+
+13) Mobile App (React Native)
+13.1 Scaffold RN app with navigation.
+13.2 Implement auth screens and storage.
+13.3 Implement patient list screen.
+13.4 Implement encounter detail screen.
+13.5 Implement live consult screen.
+13.6 Implement transcript live view.
+13.7 Implement suggestions panel.
+13.8 Implement final report view.
+13.9 Implement settings and consent screens.
+13.10 Integrate real-time updates.
+
+14) Desktop App (React)
+14.1 Scaffold React app with routing.
+14.2 Implement auth screens and storage.
+14.3 Implement patient list screen.
+14.4 Implement encounter detail screen.
+14.5 Implement live consult screen.
+14.6 Implement transcript live view.
+14.7 Implement suggestions panel.
+14.8 Implement final report view.
+14.9 Implement settings and consent screens.
+14.10 Integrate real-time updates.
+
+15) Shared Types and SDK
+15.1 Define shared TypeScript types for API.
+15.2 Generate API client for frontend apps.
+15.3 Implement shared validation schemas.
+15.4 Add shared utilities (date, formatting).
+
+16) Observability
+16.1 Add structured logging to backend.
+16.2 Add request tracing identifiers.
+16.3 Add error reporting hook.
+16.4 Add metrics for latency and throughput.
+16.5 Add logs for LLM and STT timing.
+
+17) Testing
+17.1 Add backend unit tests for services.
+17.2 Add backend integration tests for API.
+17.3 Add frontend component tests.
+17.4 Add end-to-end tests for live consult flow.
+17.5 Add load test for audio stream and STT.
+
+18) Build and Release Pipelines
+18.1 Add backend build script.
+18.2 Add mobile build scripts (Android/iOS).
+18.3 Add desktop build scripts.
+18.4 Add release pipeline for staging.
+18.5 Add environment-specific config loading.
+
