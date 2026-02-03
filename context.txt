@@ -1,19 +1,94 @@
 Project: Preventify - clinical live-assist tool for doctors/nurses.
 
-Current state:
-- Initialized planning artifacts only; no code created yet.
-- Core workflow: live consult audio -> transcript -> local LLM suggestions/questions -> final summary/diagnosis.
-- Platforms: React Native for iOS/Android, React for desktop.
-- Backend: undecided (Node.js or Python).
-- n8n: intended for automation workflows but not designed yet.
+Current state (as of 2026-02-02):
+- Steps 1-5 of plan.txt complete.
+- Monorepo scaffolded with apps (backend, desktop, mobile) and packages (shared).
+- Backend: Fastify + TypeScript with Firebase Admin SDK, auth middleware, RBAC.
+- Desktop frontend: Vite + React with Firebase Auth (Google + email/password), syncs user to backend on login.
+- Auth flow: Firebase ID tokens verified server-side; roles stored as custom claims.
+- Roles defined: doctor, nurse, admin. Default role for new users is doctor.
+- API endpoints: health check, auth/login, auth/me, admin/users, admin/users/:uid/role.
+
+Core workflow (not yet implemented):
+- Live consult audio -> transcript -> local LLM suggestions/questions -> final summary/diagnosis.
+
+Platforms:
+- React Native for iOS/Android (scaffolded, not built out).
+- React for desktop (auth + health check working).
+
+Tech stack:
+- Backend: Node.js (Fastify + TypeScript).
+- Database/Auth: Firebase (Firestore + Firebase Auth).
+- n8n: intended for automation workflows (not yet integrated).
 
 Key constraints:
 - Secrets must live in root `.env` file; never hardcode secrets.
+- Vite desktop app reads env vars from root `.env` via `envDir` config.
 
 Open decisions:
-- Backend language/framework.
 - STT provider (local vs cloud).
 - LLM runtime (local model, hardware targets).
 - Real-time transport (WebSocket vs SSE).
-- Database and storage stack.
 
+Directory structure:
+```
+2nd_attempt/
+├── .editorconfig
+├── .env                      # secrets (gitignored)
+├── .eslintrc.cjs
+├── .gitignore
+├── .husky/
+│   └── pre-commit
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── .lintstagedrc.json
+├── .prettierignore
+├── .prettierrc.json
+├── context.txt               # this file
+├── firebase.json
+├── firestore.indexes.json
+├── package.json              # root workspaces config
+├── package-lock.json
+├── plan.txt
+├── README.md
+├── tsconfig.base.json
+├── updates.txt
+├── apps/
+│   ├── backend/
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   └── src/
+│   │       ├── app.ts
+│   │       ├── config.ts
+│   │       ├── server.ts
+│   │       ├── firebase/
+│   │       │   └── admin.ts
+│   │       ├── middleware/
+│   │       │   └── auth.ts
+│   │       ├── routes/
+│   │       │   ├── auth.ts
+│   │       │   └── health.ts
+│   │       └── services/
+│   │           └── user.service.ts
+│   ├── desktop/
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │   └── src/
+│   │       ├── App.tsx
+│   │       ├── firebase.ts
+│   │       ├── main.tsx
+│   │       └── vite-env.d.ts
+│   └── mobile/
+│       └── package.json      # placeholder, not scaffolded
+└── packages/
+    └── shared/
+        ├── package.json
+        └── src/
+            ├── index.ts
+            └── types/
+                ├── roles.ts
+                └── user.ts
+```

@@ -11,3 +11,72 @@
 - Added root `.env` placeholder and `.env.example`.
 - Added root `README.md` with structure and quick start notes.
 
+2026-01-30 15:25:17
+- Updated `plan.txt` for Node.js backend and Firebase (Firestore/Auth) usage.
+- Updated `context.txt` with confirmed backend/database decisions.
+- Completed Step 2 tooling: root `package.json`, `tsconfig.base.json`, ESLint, Prettier, lint-staged, Husky hook, and CI workflow.
+- Added per-app `package.json` files with lint scripts.
+
+2026-01-30 15:26:42
+- Completed Step 3 backend scaffolding: Fastify app setup, config validation, logging, error handling, and health endpoint.
+- Added backend `tsconfig.json`, `server.ts`, and route module structure.
+- Updated backend dependencies and scripts.
+- Updated `.env.example` with Firebase settings.
+
+2026-01-30 15:29:37
+- Completed Step 4 Firebase setup: Admin SDK init, Firestore/Auth emulator config, and baseline security rules/indexes.
+- Updated backend config for Firebase emulator settings and wired health check to validate Firestore connectivity.
+- Added Firebase files: `firebase.json`, `firestore.rules`, `firestore.indexes.json`.
+
+2026-02-02 14:58:36
+- Removed Firebase service account JSON from the repo and added a .gitignore rule to prevent re-adding it.
+
+2026-02-02 15:05:40
+- Added optional Firebase service account file support in backend config and admin initialization.
+- Allowed Firebase env variables to be optional when a service account path is provided.
+
+2026-02-02 15:09:39
+- Installed repo dependencies after resolving Fastify type provider peer dependency.
+- Adjusted `fastify-type-provider-zod` to a Fastify v4 compatible version.
+
+2026-02-02 15:16:36
+- Fixed Firebase service account path resolution to work from workspace root when running backend scripts.
+
+2026-02-02 15:18:35
+- Added Zod validator/serializer compilers to Fastify app to fix schema serialization error.
+
+2026-02-02 15:29:13
+- Added a Vite React desktop app with Firebase Auth (Google + email/password) and backend health check UI.
+- Added desktop app config, scripts, and dependencies.
+
+2026-02-02 16:02:45
+- Updated Vite config to read env vars from root `.env` using `envDir` option.
+
+2026-02-02 16:04:39
+- Added `@fastify/cors` to backend and registered it in app.ts to fix CORS errors from frontend.
+- Made buildApp async to support plugin registration.
+- Added `browserLocalPersistence` to frontend Firebase auth for session persistence.
+
+2026-02-02 16:06:40
+- Added `onAuthStateChanged` listener in App.tsx to properly track auth state and persist sessions.
+- Updated UI to show signed-in user info (email, photo) and conditionally show sign-in forms.
+- Added `Cross-Origin-Opener-Policy: same-origin-allow-popups` header to Vite dev server to fix popup warnings.
+
+2026-02-02 16:21:00
+- Added Firestore to frontend: exports `db` and `upsertUserRecord` function.
+- On sign-in, creates/updates a document in `users/{uid}` with email, displayName, photoURL, and lastLoginAt.
+- Updated `firestore.rules` to allow authenticated users to read/write their own user document.
+
+2026-02-02 16:34:13
+- Completed Step 5: Auth and RBAC
+- Created `packages/shared` with role types (`doctor`, `nurse`, `admin`) and `UserProfile` interface.
+- Added backend auth middleware (`verifyToken`) to validate Firebase ID tokens.
+- Added `requireRole` middleware for RBAC enforcement.
+- Created `user.service.ts` with functions for user profile CRUD and custom claims.
+- Created auth routes: `POST /auth/login`, `GET /auth/me`, `PATCH /auth/me`, `GET /admin/users`, `PATCH /admin/users/:uid/role`.
+- Updated frontend to sync user with backend on login and display user role.
+- Default role for new users is `doctor`; admins can change roles via API.
+
+2026-02-02 16:40:03
+- Updated `context.txt` with current project state, tech stack summary, and full directory structure.
+

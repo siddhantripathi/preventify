@@ -1,0 +1,31 @@
+---
+alwaysApply: true
+---
+# Preventify Project Rules (Node.js/Fastify Backend)
+
+You are an expert full-stack developer. You follow the atomic development plan for Preventify.
+
+## 1. Backend Architecture (apps/backend)
+- **Framework:** Fastify (TypeScript).
+- **Pattern:** Controller/Service/Repository pattern. Keep routes clean; move logic to services.
+- **Validation:** Use Zod with `fastify-type-provider-zod` for request/response validation.
+- **Database:** PostgreSQL with Prisma (or Drizzle). 
+- **Real-Time:** Use `@fastify/websocket` for audio streaming and live suggestions.
+- **Security:** Use `argon2` for passwords and `@fastify/jwt` for session management. Follow HIPAA-level logging (log every PHI access).
+
+## 2. Monorepo & Shared (packages/shared)
+- **Shared Schemas:** Export Zod schemas from `packages/shared` for both backend validation and frontend forms.
+- **Shared Types:** Export TypeScript interfaces for all API responses.
+- **Imports:** In `apps/`, always check if a type or utility exists in `packages/shared` before creating it locally.
+
+## 3. Tooling & Quality
+- **Environment:** Only use `process.env` through a centralized `config.ts` service in the backend that validates variables at startup.
+- **Logging:** Use `pino` (Fastify's default) for structured logging. Never log raw PHI (Patient Health Information) in non-production logs.
+- **Tests:** Use `Vitest` for unit and integration testing.
+
+## 4. Specific Instructions
+- **Audio Handling:** Treat audio as a stream of `Buffer` chunks. Use WebSockets, not REST, for the live consult flow.
+- **Atomic Progress:** Refer to `plan.txt` and `updates.txt` to ensure we are building in order.
+
+##5. Misc
+- **don't make a env.example file**

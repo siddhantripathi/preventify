@@ -13,7 +13,20 @@ logs/
 # Environment files
 .env
 
+# Firebase service account keys
+*-firebase-adminsdk-*.json
+
 # OS files
 .DS_Store
 Thumbs.db
-
+plan.txt
+updates.txt
+context.txt
+.cursorignore
+.cursor\rules\preventify-rules.mdc
+.prettierignore
+.prettierrc.json
+.eslintrc.cjs
+.github\workflows\ci.yml
+.husky\pre-commit
+.cursor\rules\preventify-rules.mdc

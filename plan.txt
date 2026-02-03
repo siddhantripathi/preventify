@@ -22,7 +22,7 @@ Preventify Development Plan (Technical, Atomic)
 2.7 Add CI pipeline for lint/test/build.
 
 3) Backend Scaffolding
-3.1 Choose backend runtime (Node.js or Python).
+3.1 Use Node.js (Fastify + TypeScript) for API server.
 3.2 Scaffold API server project.
 3.3 Configure environment loader to read root `.env`.
 3.4 Add config module for environment validation.
@@ -30,32 +30,32 @@ Preventify Development Plan (Technical, Atomic)
 3.6 Set up error handling middleware.
 3.7 Add health check endpoint.
 
-4) Database and Migrations
-4.1 Choose database (PostgreSQL).
-4.2 Choose ORM or query builder.
-4.3 Set up migration tooling.
-4.4 Create initial migration table.
-4.5 Define DB connection pool.
-4.6 Add DB health check.
+4) Firebase Setup (Database + Auth)
+4.1 Use Firebase (Firestore) as database.
+4.2 Initialize Firebase Admin SDK in backend.
+4.3 Configure Firestore collections and indexes.
+4.4 Define Firestore security rules (baseline).
+4.5 Add Firebase connectivity health check.
+4.6 Create local Firebase emulator config (dev).
 
 5) Auth and RBAC
 5.1 Define roles: doctor, nurse, admin.
-5.2 Implement user model and migration.
-5.3 Implement password hashing or SSO placeholder.
-5.4 Implement login endpoint.
-5.5 Implement JWT issuance and refresh.
+5.2 Implement user profile model in Firestore.
+5.3 Configure Firebase Auth providers.
+5.4 Implement login endpoint (token exchange).
+5.5 Verify Firebase ID tokens in backend.
 5.6 Implement auth middleware.
-5.7 Implement RBAC guard utilities.
+5.7 Implement RBAC via Firebase custom claims.
 
 6) Core Data Models
-6.1 Implement patient model and migration.
-6.2 Implement encounter model and migration.
-6.3 Implement transcript model and migration.
-6.4 Implement suggestion model and migration.
-6.5 Implement diagnosis model and migration.
-6.6 Implement consent model and migration.
-6.7 Implement audit_log model and migration.
-6.8 Add DB indexes for key queries.
+6.1 Implement patient collection and document schema.
+6.2 Implement encounter collection and document schema.
+6.3 Implement transcript collection and document schema.
+6.4 Implement suggestion collection and document schema.
+6.5 Implement diagnosis collection and document schema.
+6.6 Implement consent collection and document schema.
+6.7 Implement audit_log collection and document schema.
+6.8 Add Firestore indexes for key queries.
 
 7) API Endpoints
 7.1 Implement CRUD for patients.
